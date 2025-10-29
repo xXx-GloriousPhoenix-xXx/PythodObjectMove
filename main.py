@@ -34,10 +34,10 @@ embed_width = int(0.75 * width)
 separator_width = 4
 
 # Area borders
-area_border_left = control_width + separator_width
-area_border_right = width
-area_border_top = 0
-area_border_bottom = height
+area_border_left = 0
+area_border_right = width - separator_width - control_width
+area_border_top = height
+area_border_bottom = 0
 
 # Object
 object_border_width = 4
@@ -95,12 +95,25 @@ text_center_x = object_center_x
 text_center_y = object_center_y
 # ======================================================= #
 
+# ==================== Checks ==================== #
+def is_out_of_bounds(point):
+    (x, y) = point
+    if x < area_border_left or x > area_border_right:
+        return True
+    if y > area_border_top or y < area_border_bottom:
+        return True
+    return False
+
 # ==================== Object operate ==================== #
 def translate_object(points, dx, dy):
     # foreach point in points add vector (dx, dy)
-    return [(x + dx, y + dy) for (x, y) in points]
-
-# def translate_text_object(points, dx, dy):
+    translated = []
+    for (x, y) in points:
+        new_point = (x + dx, y + dy)
+        if (is_out_of_bounds(new_point)):
+            return points
+        translated.append((x + dx, y + dy))
+    return translated
 
 def find_center(points):
     return (sum([x for (x, y) in points]) / len(points),
