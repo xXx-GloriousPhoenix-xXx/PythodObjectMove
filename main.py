@@ -103,6 +103,7 @@ def is_out_of_bounds(point):
     if y > area_border_top or y < area_border_bottom:
         return True
     return False
+# ================================================ #
 
 # ==================== Object operate ==================== #
 def translate_object(points, dx, dy):
