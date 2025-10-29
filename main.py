@@ -157,7 +157,13 @@ def scale_object(points, sx, sy):
     # foreach point in points multiply:
     # x by sx
     # y by sy
-    return [(int(x * sx), int(y * sy)) for (x, y) in points]
+    scaled = []
+    (cx, cy) = find_center(points)
+    for (x, y) in points:
+        x_new = cx + (x - cx) * sx
+        y_new = cy + (y - cy) * sy
+        scaled.append((x_new, y_new))
+    return scaled
 # ======================================================== #
  
 # ==================== Key bind ==================== #
