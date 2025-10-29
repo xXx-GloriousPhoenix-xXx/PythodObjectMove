@@ -274,14 +274,6 @@ create_custom_button(control_frame, "Відобразити по Y", reflect_obj
 # ==================== Object mode toggle ==================== #
 mode_var = tk.BooleanVar(value=False)
 
-def toggle_mode():
-    if mode_var.get():
-        print("Режим: Текст")
-        # Здесь можешь вызвать функцию для отображения текста вместо фигуры
-    else:
-        print("Режим: Фігура")
-        # Вернуться к обычному рисованию фигуры
-
 mode_slider = tk.Scale(
     control_frame,
     from_=0, to=1,
@@ -293,8 +285,7 @@ mode_slider = tk.Scale(
     troughcolor=object_color,
     highlightthickness=0,
     width=35,
-    variable=mode_var,
-    command=lambda v: toggle_mode()
+    variable=mode_var
 )
 mode_slider.pack(side="top", pady=(30, 0))
 # ============================================================ #
